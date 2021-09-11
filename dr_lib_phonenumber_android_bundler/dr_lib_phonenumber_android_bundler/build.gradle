@@ -1,8 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'maven-publish'
     id("org.mozilla.rust-android-gradle.rust-android") version "0.9.0"
 }
+
+group = "com.github.TabooSun"
 
 android {
     compileSdk 30
@@ -83,5 +86,19 @@ afterEvaluate {
         }
         def buildType = "${variant.buildType.name.capitalize()}"
         tasks["generate${productFlavor}${buildType}Assets"].dependsOn(tasks["cargoBuild"])
+    }
+
+    publishing {
+        publications {
+            // Create a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release
+                // You can then customize attributes of the publication as shown below.
+                groupId = "com.tech_creator"
+                artifactId = "dr_libphonenumber"
+                version = "1.0"
+            }
+        }
     }
 }

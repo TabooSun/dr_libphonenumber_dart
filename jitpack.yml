@@ -1,0 +1,6 @@
+jdk:
+  - openjdk11
+before_install:
+  - echo "The current uname is:"
+  - uname
+  - echo "\n"
