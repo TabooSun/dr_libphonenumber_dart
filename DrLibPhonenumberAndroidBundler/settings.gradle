@@ -6,6 +6,6 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "dr_lib_phonenumber_android_bundler"
+rootProject.name = "DrLibPhonenumberAndroidBundler"
 include ':app'
 include ':dr_lib_phonenumber_android_bundler'

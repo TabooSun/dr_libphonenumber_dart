@@ -6,8 +6,10 @@ plugins {
 android {
     compileSdk 30
 
+    ndkVersion "23.0.7599858"
+
     defaultConfig {
-        applicationId "com.tech_creator.dr_lib_phonenumber_android_bundler"
+        applicationId "com.tech_creator.DrLibPhonenumberAndroidBundler"
         minSdk 21
         targetSdk 30
         versionCode 1
