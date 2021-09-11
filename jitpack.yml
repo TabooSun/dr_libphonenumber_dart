@@ -1,6 +1,10 @@
 jdk:
   - openjdk11
 before_install:
-  - echo "The current uname is:"
-  - uname
-  - echo "\n"
+  # Install Rust. The argument after "sh" command will accept all the default options of rustup.
+  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  # Configure current shell for rust.
+  - source $HOME/.cargo/env
+  # Install linker. See https://stackoverflow.com/a/52445962/8068270.
+  - apt-get install build-essential
+
