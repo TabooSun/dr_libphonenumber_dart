@@ -10,7 +10,16 @@ group = "com.github.TabooSun"
 android {
     compileSdk 30
 
-    ndkVersion "23.0.7599858"
+    // Jitpack has issue with ndk version: https://github.com/jitpack/jitpack.io/issues/4638
+
+    if (System.getenv("JITPACK")) {
+        print("Use 21")
+        ndkVersion "21.1.6352462"
+    }
+    else {
+        print("Use 23")
+        ndkVersion "23.0.7599858"
+    }
 
     defaultConfig {
         minSdk 21

@@ -6,8 +6,14 @@ plugins {
 android {
     compileSdk 30
 
-    ndkVersion "23.0.7599858"
+    // Jitpack has issue with ndk version: https://github.com/jitpack/jitpack.io/issues/4638
 
+    if (System.getenv("JITPACK")) {
+        ndkVersion "21.1.6352462"
+    }
+    else {
+        ndkVersion "23.0.7599858"
+    }
     defaultConfig {
         applicationId "com.tech_creator.DrLibPhonenumberAndroidBundler"
         minSdk 21
