@@ -30,7 +30,7 @@ jobs:
       id: setup-ndk
       with:
         ndk-version: r23
-        add-to-path: false
+        add-to-path: true
         
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
