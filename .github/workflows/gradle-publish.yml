@@ -4,9 +4,10 @@
 name: Gradle Package
 
 on:
-  release:
-    types: [created]
-
+  create:
+    ref_type: tag
+    
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
