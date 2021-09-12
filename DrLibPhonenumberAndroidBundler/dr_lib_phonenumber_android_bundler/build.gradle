@@ -2,11 +2,14 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'maven-publish'
-//    id "com.gradle.plugin-publish" version "0.15.0"
-    id("org.mozilla.rust-android-gradle.rust-android") version "0.9.0"
+    id "org.mozilla.rust-android-gradle.rust-android" version "0.9.0"
 }
 
-group = "com.github.TabooSun.dr_lib_phonenumber_android_bundler"
+version = "1.0"
+def bundlerDomain = "com.github.TabooSun"
+def bundlerArtifactName = "dr_lib_phonenumber_android_bundler"
+def bundlerPluginId = "${bundlerDomain}.${bundlerArtifactName}"
+group = bundlerPluginId
 
 android {
     compileSdk 30
@@ -90,15 +93,25 @@ afterEvaluate {
     }
 
     publishing {
+        // Publish to Github Gradle Registry
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/TabooSun/dr_libphonenumber_rust")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                }
+            }
+        }
         publications {
             // Create a Maven publication called "release".
             release(MavenPublication) {
                 // Applies the component for the release build variant.
                 from components.release
                 // You can then customize attributes of the publication as shown below.
-                groupId = "com.tech_creator"
-                artifactId = "dr_libphonenumber"
-                version = "1.0"
+                groupId = bundlerDomain
+                artifactId = bundlerArtifactName
             }
         }
     }
