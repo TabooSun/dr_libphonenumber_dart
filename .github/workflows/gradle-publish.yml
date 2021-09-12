@@ -38,6 +38,7 @@ jobs:
       run: |
         echo $ANDROID_HOME
         echo "y" | sudo $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;23.0.7599858"
+        ls $ANDROID_NDK_HOME
         
     - name: Install Cargo toolchain for each architect
       run: rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
@@ -50,4 +51,3 @@ jobs:
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
