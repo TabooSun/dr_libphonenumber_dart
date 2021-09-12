@@ -39,7 +39,9 @@ jobs:
 #         key: ndk-cache-23.0.7599858-v2
     - name: Install NDK
       if: steps.ndk-cache.outputs.cache-hit != 'true'
-      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;23.0.7599858"
+      run: |
+        echo $ANDROID_HOME
+        echo "y" | sudo $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;23.0.7599858"
         
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
