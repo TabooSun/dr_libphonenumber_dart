@@ -37,7 +37,7 @@ jobs:
     - name: Publish to GitHub Packages
       run: |
         ls $ANDROID_NDK_HOME
-        ./gradlew publish
+        ./gradlew --debug publish
       working-directory: DrLibPhonenumberAndroidBundler
       env:
         USERNAME: ${{ github.actor }}
