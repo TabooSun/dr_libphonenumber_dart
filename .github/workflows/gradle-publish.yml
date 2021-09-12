@@ -26,18 +26,26 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - uses: actions/checkout@v2
-    - uses: nttld/setup-ndk@v1
-      id: setup-ndk
-      with:
-        ndk-version: r23
-        add-to-path: true
+#     - name: Prepare NDK dir for caching ( workaround for https://github.com/actions/virtual-environments/issues/1337 )
+#       run: |
+#         sudo mkdir -p /usr/local/lib/android/sdk/ndk
+#         sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
+#         sudo chown -R $USER:$USER /usr/local/lib/android/sdk/ndk
+#     - name: NDK Cache
+#       id: ndk-cache
+#       uses: actions/cache@v2
+#       with:
+#         path: /usr/local/lib/android/sdk/ndk
+#         key: ndk-cache-23.0.7599858-v2
+    - name: Install NDK
+      if: steps.ndk-cache.outputs.cache-hit != 'true'
+      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;23.0.7599858"
         
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
     - name: Publish to GitHub Packages
       run: |
-        ls $ANDROID_NDK_HOME
-        ./gradlew --debug publish
+        ./gradlew publish
       working-directory: DrLibPhonenumberAndroidBundler
       env:
         USERNAME: ${{ github.actor }}
