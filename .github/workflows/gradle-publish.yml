@@ -40,7 +40,7 @@ jobs:
         echo "y" | sudo $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;23.0.7599858"
         
     - name: Install Cargo toolchain for each architect
-      run: aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
+      run: rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
       
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
