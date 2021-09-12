@@ -36,7 +36,7 @@ jobs:
     # the publishing section of your build.gradle
     - name: Publish to GitHub Packages
       run: |
-        echo $ANDROID_NDK_HOME
+        ls $ANDROID_NDK_HOME
         ./gradlew publish
       working-directory: DrLibPhonenumberAndroidBundler
       env:
