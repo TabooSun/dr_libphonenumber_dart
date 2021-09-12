@@ -29,13 +29,15 @@ jobs:
     - uses: nttld/setup-ndk@v1
       id: setup-ndk
       with:
-        ndk-version: r21e
+        ndk-version: r23
         add-to-path: false
         
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
     - name: Publish to GitHub Packages
-      run: ./gradlew publish
+      run: |
+        echo $ANDROID_NDK_HOME
+        ./gradlew publish
       working-directory: DrLibPhonenumberAndroidBundler
       env:
         USERNAME: ${{ github.actor }}
