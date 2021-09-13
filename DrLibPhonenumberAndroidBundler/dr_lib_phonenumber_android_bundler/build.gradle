@@ -76,8 +76,6 @@ cargo {
 }
 
 dependencies {
-//    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation fileTree(dir: 'build', include: ['*.so'])
     implementation 'androidx.core:core-ktx:1.6.0'
 }
 
