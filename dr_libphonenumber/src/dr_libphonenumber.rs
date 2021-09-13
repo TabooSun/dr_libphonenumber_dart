@@ -43,6 +43,16 @@ pub extern "C" fn getNumberType(phone_number: *const c_char, iso_code: *const c_
     get_number_type(metadata, &national_phone_number)
 }
 
+#[no_mangle]
+pub extern "C" fn getRegionCodeForCountryCode(calling_code: u16) -> *mut c_char {
+    let region_code = *DATABASE.by_code(&calling_code).unwrap_or_else(|| {
+        panic!("Invalid calling_code: {}", calling_code);
+    }).first().unwrap_or_else(|| {
+        panic!("Unable to locate the region code for calling_code: {}", calling_code);
+    });
+    CString::new(region_code.id()).unwrap().into_raw()
+}
+
 fn parse_phone_number(phone_number: *const c_char, country: Id) -> PhoneNumber {
     let phone_number = string_helper::parse_c_char_to_str(phone_number, "phone_number");
     let phone_number = phonenumber::parse(Some(country), phone_number.clone())

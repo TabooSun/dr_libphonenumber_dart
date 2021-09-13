@@ -51,6 +51,13 @@ mod tests {
         assert_eq!(phone_number_type, number_type::PhoneNumberType::Mobile);
     }
 
+    #[test]
+    fn get_region_code_for_country_code() {
+        let region_code = dr_libphonenumber::getRegionCodeForCountryCode(60);
+        assert_eq!(string_helper::parse_c_char_to_str(region_code, "region_code"), ISO_CODE);
+        free_memory(region_code);
+    }
+
     fn parse_str_to_c_char(s: &str) -> *const c_char {
         CString::new(s).unwrap().into_raw()
     }
