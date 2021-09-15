@@ -1,4 +1,4 @@
-name: Publish binaries
+name: Publish to CocoaPods trunk
 
 on:
   create:
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Make binaries
-        working-directory: native/dr_libphonenumber
+        working-directory: dr_libphonenumber
         run: |
           make init
           make ios
@@ -25,7 +25,7 @@ jobs:
           make archive
 
       - name: Pod lib lint
-        working-directory: native/DrLibPhonenumberSwiftBundler
+        working-directory: DrLibPhonenumberSwiftBundler
         run: pod lib lint DrLibPhonenumberSwiftBundler.podspec
 
 #      - name: Zip ios artifacts
@@ -42,5 +42,5 @@ jobs:
 #          token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Cleanup
-        working-directory: native/dr_libphonenumber
+        working-directory: dr_libphonenumber
         run: make clean
