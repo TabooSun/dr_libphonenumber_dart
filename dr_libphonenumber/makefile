@@ -91,7 +91,7 @@ ndk-home:
 bindings: target/bindings.h
 
 target/bindings.h: $(SOURCES)
-	cbindgen $^ -c cbindgen.toml | grep -v \#include | uniq > $@
+	cbindgen $^ -c cbindgen.toml -o $@
 	@echo "[DONE] $@"
 	cp $@ $(DrLibPhonenumberSwiftBundlerPath)/Classes/DrLibPhonenumberBindings.h
 	@echo "[DONE] Copy header file to bundler"
