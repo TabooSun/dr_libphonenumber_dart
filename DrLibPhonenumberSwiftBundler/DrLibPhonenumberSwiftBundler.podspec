@@ -26,15 +26,18 @@ This library is the underlying implementation of dr_libphonenumber.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'TabooSun' => 'taboosun1996@gmail.com' }
   s.source           = { :git => 'https://github.com/TabooSun/dr_libphonenumber_rust.git', :tag => s.version.to_s }
-  s.public_header_files = 'DrLibPhonenumberSwiftBundler/Classes**/*.h'
+  s.public_header_files = 'DrLibPhonenumberSwiftBundler/Classes/**/*.h'
   s.source_files = 'DrLibPhonenumberSwiftBundler/Classes/**/*'
   s.static_framework = true
-  s.vendored_libraries = "DrLibPhonenumberSwiftBundler/libdr_libphonenumber.a"
+  s.vendored_libraries = "DrLibPhonenumberSwiftBundler/*.a"
 
-  s.ios.deployment_target = '9.0'
+  s.platform = :ios, '10.0'
 
   s.swift_version = '5.0'
-  
+
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+
   # s.resource_bundles = {
   #   'DrLibPhonenumberSwiftBundler' => ['DrLibPhonenumberSwiftBundler/Assets/*.png']
   # }
