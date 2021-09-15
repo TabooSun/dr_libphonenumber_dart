@@ -1,0 +1,27 @@
+PODS:
+  - DrLibPhonenumberSwiftBundler (0.1.0)
+  - Nimble (8.0.9)
+  - Quick (2.2.1)
+
+DEPENDENCIES:
+  - DrLibPhonenumberSwiftBundler (from `../`)
+  - Nimble (~> 8.0.7)
+  - Quick (~> 2.2.0)
+
+SPEC REPOS:
+  trunk:
+    - Nimble
+    - Quick
+
+EXTERNAL SOURCES:
+  DrLibPhonenumberSwiftBundler:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DrLibPhonenumberSwiftBundler: bc28e4323c3ac7c6d00582cf86122a47c4dc0788
+  Nimble: 98b888285a615fd34f20e61753cf58ea1402bde4
+  Quick: f5754d69b7013f5864c29aab9ae6f0c79c5bc200
+
+PODFILE CHECKSUM: 53be310c621c5f844be4801d455caa0f22afed82
+
+COCOAPODS: 1.11.2
