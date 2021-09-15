@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		00A41F08A0EF5371021C293E /* Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Tests/Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2BAE8CA7DA887BA7920A1F54 /* Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Example/Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig"; sourceTree = "<group>"; };
-		606049F5604B1ED370313263 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		606049F5604B1ED370313263 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* DrLibPhonenumberSwiftBundler_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrLibPhonenumberSwiftBundler_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,12 +41,12 @@
 		607FACE51AFB9204008FA782 /* DrLibPhonenumberSwiftBundler_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrLibPhonenumberSwiftBundler_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		7DE50E784F2968055DCB11E5 /* DrLibPhonenumberSwiftBundler.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = DrLibPhonenumberSwiftBundler.podspec; path = ../DrLibPhonenumberSwiftBundler.podspec; sourceTree = "<group>"; };
+		7DE50E784F2968055DCB11E5 /* DrLibPhonenumberSwiftBundler.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DrLibPhonenumberSwiftBundler.podspec; path = ../DrLibPhonenumberSwiftBundler.podspec; sourceTree = "<group>"; };
 		997F92BE479B86BDB10426FD /* Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Example/Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BEFB87055F6CEF0544D74E82 /* Pods_DrLibPhonenumberSwiftBundler_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrLibPhonenumberSwiftBundler_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8C271BEEA7BC57AFED278FF /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrLibPhonenumberSwiftBundler_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45744EA3C377FB5448FF52D /* Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Tests/Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		EA78819F35841A0B71192CCE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		EA78819F35841A0B71192CCE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,6 @@
 				00A41F08A0EF5371021C293E /* Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig */,
 				D45744EA3C377FB5448FF52D /* Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -228,6 +227,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -506,6 +506,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -521,6 +522,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

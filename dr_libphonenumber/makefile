@@ -10,6 +10,7 @@ ANDROID_ARMV7_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86
 ANDROID_I686_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86_64/bin/i686-linux-android29-clang
 ANDROID_X86_64_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86_64/bin/x86_64-linux-android29-clang
 
+DrLibPhonenumberSwiftBundlerPath=../DrLibPhonenumberSwiftBundler/DrLibPhonenumberSwiftBundler
 SHELL := /bin/bash
 
 # ##############################################################################
@@ -43,9 +44,9 @@ init:
 all: ios android bindings
 
 ## ios: Compile the iOS universal library
-ios: target/universal/release/libexample.a
+ios: target/universal/release/archive.a
 
-target/universal/release/libexample.a: $(SOURCES) ndk-home
+target/universal/release/archive.a: $(SOURCES) ndk-home
 	@if [ $$(uname) == "Darwin" ] ; then \
 		cargo lipo --release ; \
 		else echo "Skipping iOS compilation on $$(uname)" ; \
@@ -92,8 +93,12 @@ bindings: target/bindings.h
 target/bindings.h: $(SOURCES)
 	cbindgen $^ -c cbindgen.toml | grep -v \#include | uniq > $@
 	@echo "[DONE] $@"
-	cp $@ ../../ios/Classes/DrLibPhonenumberBindings.h
-	@echo "[DONE] Copy header file to iOS folder"
+	cp $@ $(DrLibPhonenumberSwiftBundlerPath)/Classes/DrLibPhonenumberBindings.h
+	@echo "[DONE] Copy header file to bundler"
+
+archive:
+	cp target/universal/release/libdr_libphonenumber.a $(DrLibPhonenumberSwiftBundlerPath)/.
+	@echo "[DONE] Copy static library to bundler"
 
 ## :
 

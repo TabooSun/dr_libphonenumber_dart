@@ -10,3 +10,7 @@ DrLibPhonenumberAndroidBundler/.idea/
 .idea/
 
 DrLibPhonenumberSwiftBundler/Example/Pods/
+
+DrLibPhonenumberSwiftBundler/DrLibPhonenumberSwiftBundler/libdr_libphonenumber.a
+
+DrLibPhonenumberSwiftBundler/DrLibPhonenumberSwiftBundler/Classes/DrLibPhonenumberBindings.h

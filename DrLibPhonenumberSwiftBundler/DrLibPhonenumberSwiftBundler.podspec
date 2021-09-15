@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'DrLibPhonenumberSwiftBundler'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of DrLibPhonenumberSwiftBundler.'
+  s.summary          = 'The underlying implementation of dr_libphonenumber.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+This library is the underlying implementation of dr_libphonenumber.
                        DESC
 
   s.homepage         = 'https://github.com/TabooSun/dr_libphonenumber_rust.git'
@@ -29,10 +29,11 @@ TODO: Add long description of the pod here.
   s.public_header_files = 'DrLibPhonenumberSwiftBundler/Classes**/*.h'
   s.source_files = 'DrLibPhonenumberSwiftBundler/Classes/**/*'
   s.static_framework = true
-  s.vendored_libraries = "libdr_libphonenumber.a"
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.vendored_libraries = "DrLibPhonenumberSwiftBundler/libdr_libphonenumber.a"
 
   s.ios.deployment_target = '9.0'
+
+  s.swift_version = '5.0'
   
   # s.resource_bundles = {
   #   'DrLibPhonenumberSwiftBundler' => ['DrLibPhonenumberSwiftBundler/Assets/*.png']
