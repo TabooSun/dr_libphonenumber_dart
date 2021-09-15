@@ -1,4 +1,4 @@
-name: Publish binaries
+name: Publish to CocoaPods trunk
 
 on:
   create:
