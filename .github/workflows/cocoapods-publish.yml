@@ -28,18 +28,12 @@ jobs:
         working-directory: DrLibPhonenumberSwiftBundler
         run: pod lib lint DrLibPhonenumberSwiftBundler.podspec
 
-#      - name: Zip ios artifacts
-#        working-directory: native/dr_libphonenumber
-#        run: |
-#          zip -r artifacts.zip target/universal
-#          zip -ru artifacts.zip target/bindings.h
-          
-      # https://github.com/ncipollo/release-action
-#      - name: Create a release
-#        uses: ncipollo/release-action@v1
-#        with:
-#          artifacts: "native/dr_libphonenumber/artifacts.zip"
-#          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to Cocoapod
+        # You may pin to the exact commit or the version.
+        # uses: michaelhenry/deploy-to-cocoapods-github-action@745686ab065f90596e0d5cfcf97bb2416d94262e
+        uses: michaelhenry/deploy-to-cocoapods-github-action@1.0.10
+        with:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
           
       - name: Cleanup
         working-directory: dr_libphonenumber

@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DrLibPhonenumberSwiftBundler: 4e6efcbc0df6c57fac76b5d2b3c36940768a9ed3
+  DrLibPhonenumberSwiftBundler: 2dfa9c99631f642f64cb9c7b66f35d5b1922a3c1
   Nimble: 98b888285a615fd34f20e61753cf58ea1402bde4
   Quick: f5754d69b7013f5864c29aab9ae6f0c79c5bc200
 

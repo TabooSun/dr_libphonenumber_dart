@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2608FA616D2BB3D5975450AB /* Pods_DrLibPhonenumberSwiftBundler_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE03B09893B4CFFE96E1789 /* Pods_DrLibPhonenumberSwiftBundler_Example.framework */; };
-		3A1FB599E5E73B23CA3757A8 /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E6BE6926F7D3671BA8757C /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		C4E849A59A6BB46B6FB56303 /* Pods_DrLibPhonenumberSwiftBundler_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A040386B6E561B7C220C8ACD /* Pods_DrLibPhonenumberSwiftBundler_Example.framework */; };
+		F9CFEFE62923F3DF6B0DD9B2 /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5515E10AB9FB4332B76CB954 /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4A40ED9BDAA48117DE03E398 /* Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Tests/Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		0C2164BFFB1B2489B8817819 /* Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Tests/Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3C523874D9CAF527942AE440 /* Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Example/Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig"; sourceTree = "<group>"; };
+		53100A473E0E78F0C2F0B102 /* Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Tests/Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		5515E10AB9FB4332B76CB954 /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrLibPhonenumberSwiftBundler_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		606049F5604B1ED370313263 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* DrLibPhonenumberSwiftBundler_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrLibPhonenumberSwiftBundler_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,12 +44,9 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		7DE50E784F2968055DCB11E5 /* DrLibPhonenumberSwiftBundler.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DrLibPhonenumberSwiftBundler.podspec; path = ../DrLibPhonenumberSwiftBundler.podspec; sourceTree = "<group>"; };
-		9AE03B09893B4CFFE96E1789 /* Pods_DrLibPhonenumberSwiftBundler_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrLibPhonenumberSwiftBundler_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6386C0E489B4CC455BC302C /* Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Example/Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		B9E6BE6926F7D3671BA8757C /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrLibPhonenumberSwiftBundler_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E884E5074F0EB85F6C87585E /* Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Tests/Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		A040386B6E561B7C220C8ACD /* Pods_DrLibPhonenumberSwiftBundler_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrLibPhonenumberSwiftBundler_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA78819F35841A0B71192CCE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		F9599105CF08ADF8764AAC37 /* Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Example/Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig"; sourceTree = "<group>"; };
+		FF141C4756E579CBBDA68662 /* Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig"; path = "Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Example/Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2608FA616D2BB3D5975450AB /* Pods_DrLibPhonenumberSwiftBundler_Example.framework in Frameworks */,
+				C4E849A59A6BB46B6FB56303 /* Pods_DrLibPhonenumberSwiftBundler_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,13 +62,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A1FB599E5E73B23CA3757A8 /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework in Frameworks */,
+				F9CFEFE62923F3DF6B0DD9B2 /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10C856729EB6810A1650688D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A040386B6E561B7C220C8ACD /* Pods_DrLibPhonenumberSwiftBundler_Example.framework */,
+				5515E10AB9FB4332B76CB954 /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -77,7 +86,7 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				C86A76FC7B92CCB68A261D86 /* Pods */,
-				CBF42FEE6C9D9AB879BECEAC /* Frameworks */,
+				10C856729EB6810A1650688D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,21 +151,12 @@
 		C86A76FC7B92CCB68A261D86 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A6386C0E489B4CC455BC302C /* Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig */,
-				F9599105CF08ADF8764AAC37 /* Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig */,
-				4A40ED9BDAA48117DE03E398 /* Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig */,
-				E884E5074F0EB85F6C87585E /* Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig */,
+				FF141C4756E579CBBDA68662 /* Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig */,
+				3C523874D9CAF527942AE440 /* Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig */,
+				0C2164BFFB1B2489B8817819 /* Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig */,
+				53100A473E0E78F0C2F0B102 /* Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		CBF42FEE6C9D9AB879BECEAC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9AE03B09893B4CFFE96E1789 /* Pods_DrLibPhonenumberSwiftBundler_Example.framework */,
-				B9E6BE6926F7D3671BA8757C /* Pods_DrLibPhonenumberSwiftBundler_Tests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,7 +166,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "DrLibPhonenumberSwiftBundler_Example" */;
 			buildPhases = (
-				5EFE5AF27E7C61D31739CBC6 /* [CP] Check Pods Manifest.lock */,
+				03D89784C9D18AB475B8B9BC /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
@@ -184,11 +184,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "DrLibPhonenumberSwiftBundler_Tests" */;
 			buildPhases = (
-				78ABC08CC5A7A4FCB55B48F0 /* [CP] Check Pods Manifest.lock */,
+				31061E1F039CD451B76CBBBC /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				57346FD4BDFA6F3BE595248E /* [CP] Embed Pods Frameworks */,
+				8A579BB34DA23D84911DEA6E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -212,6 +212,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = YB9M5F7RAZ;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -262,27 +263,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		57346FD4BDFA6F3BE595248E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Tests/Pods-DrLibPhonenumberSwiftBundler_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Tests/Pods-DrLibPhonenumberSwiftBundler_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5EFE5AF27E7C61D31739CBC6 /* [CP] Check Pods Manifest.lock */ = {
+		03D89784C9D18AB475B8B9BC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -304,7 +285,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		78ABC08CC5A7A4FCB55B48F0 /* [CP] Check Pods Manifest.lock */ = {
+		31061E1F039CD451B76CBBBC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -324,6 +305,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A579BB34DA23D84911DEA6E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Tests/Pods-DrLibPhonenumberSwiftBundler_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DrLibPhonenumberSwiftBundler_Tests/Pods-DrLibPhonenumberSwiftBundler_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -407,6 +408,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "$(inherited) i386 arm64";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -461,6 +463,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "$(inherited) i386 arm64";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -479,9 +482,10 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6386C0E489B4CC455BC302C /* Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig */;
+			baseConfigurationReference = FF141C4756E579CBBDA68662 /* Pods-DrLibPhonenumberSwiftBundler_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YB9M5F7RAZ;
 				INFOPLIST_FILE = DrLibPhonenumberSwiftBundler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -495,9 +499,10 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9599105CF08ADF8764AAC37 /* Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig */;
+			baseConfigurationReference = 3C523874D9CAF527942AE440 /* Pods-DrLibPhonenumberSwiftBundler_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YB9M5F7RAZ;
 				INFOPLIST_FILE = DrLibPhonenumberSwiftBundler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -511,7 +516,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A40ED9BDAA48117DE03E398 /* Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig */;
+			baseConfigurationReference = 0C2164BFFB1B2489B8817819 /* Pods-DrLibPhonenumberSwiftBundler_Tests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -533,7 +538,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E884E5074F0EB85F6C87585E /* Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig */;
+			baseConfigurationReference = 53100A473E0E78F0C2F0B102 /* Pods-DrLibPhonenumberSwiftBundler_Tests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",

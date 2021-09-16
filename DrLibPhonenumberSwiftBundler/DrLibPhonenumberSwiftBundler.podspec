@@ -35,8 +35,9 @@ This library is the underlying implementation of dr_libphonenumber.
 
   s.swift_version = '5.0'
 
-  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+#   s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386 arm64' }
+  s.pod_target_xcconfig = {  'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386 arm64' }
 
   # s.resource_bundles = {
   #   'DrLibPhonenumberSwiftBundler' => ['DrLibPhonenumberSwiftBundler/Assets/*.png']

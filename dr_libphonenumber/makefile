@@ -98,6 +98,8 @@ target/bindings.h: $(SOURCES)
 
 archive:
 	cp target/universal/release/libdr_libphonenumber.a $(DrLibPhonenumberSwiftBundlerPath)/.
+	#cp target/universal/release/libdr_libphonenumber.a $(DrLibPhonenumberSwiftBundlerPath)/libdr_libphonenumber_arm64_simulator.a
+	#lipo -create target/universal/release/libdr_libphonenumber.a target/aarch64-apple-ios-sim/release/libdr_libphonenumber.a -o $(DrLibPhonenumberSwiftBundlerPath)/libdr_libphonenumber.a
 	@echo "[DONE] Copy static library to bundler"
 
 ## :
