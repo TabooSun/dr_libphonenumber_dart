@@ -10,7 +10,7 @@ ANDROID_ARMV7_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86
 ANDROID_I686_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86_64/bin/i686-linux-android29-clang
 ANDROID_X86_64_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86_64/bin/x86_64-linux-android29-clang
 
-DrLibPhonenumberSwiftBundlerPath=../DrLibPhonenumberSwiftBundler/DrLibPhonenumberSwiftBundler
+DrLibPhonenumberPluginPath=../../ios
 SHELL := /bin/bash
 
 # ##############################################################################
@@ -93,13 +93,11 @@ bindings: target/bindings.h
 target/bindings.h: $(SOURCES)
 	cbindgen $^ -c cbindgen.toml -o $@
 	@echo "[DONE] $@"
-	cp $@ $(DrLibPhonenumberSwiftBundlerPath)/Classes/DrLibPhonenumberBindings.h
+	cp $@ $(DrLibPhonenumberPluginPath)/Classes/DrLibPhonenumberBindings.h
 	@echo "[DONE] Copy header file to bundler"
 
 archive:
-	cp target/universal/release/libdr_libphonenumber.a $(DrLibPhonenumberSwiftBundlerPath)/.
-	#cp target/universal/release/libdr_libphonenumber.a $(DrLibPhonenumberSwiftBundlerPath)/libdr_libphonenumber_arm64_simulator.a
-	#lipo -create target/universal/release/libdr_libphonenumber.a target/aarch64-apple-ios-sim/release/libdr_libphonenumber.a -o $(DrLibPhonenumberSwiftBundlerPath)/libdr_libphonenumber.a
+	cp target/universal/release/libdr_libphonenumber.a $(DrLibPhonenumberPluginPath)/.
 	@echo "[DONE] Copy static library to bundler"
 
 ## :

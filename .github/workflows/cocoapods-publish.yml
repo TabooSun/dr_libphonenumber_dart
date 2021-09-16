@@ -1,9 +1,9 @@
 name: Publish to CocoaPods trunk
 
 on:
-  create:
-    ref_type: tag
-    
+#  create:
+#    ref_type: tag
+
   workflow_dispatch:
 
 env:
