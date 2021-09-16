@@ -94,12 +94,16 @@ target/bindings.h: $(SOURCES)
 	cbindgen $^ -c cbindgen.toml -o $@
 	@echo "[DONE] $@"
 	cp $@ $(DrLibPhonenumberPluginPath)/Classes/DrLibPhonenumberBindings.h
-	@echo "[DONE] Copy header file to bundler"
+	@echo "[DONE] Copy header file to plugin"
 
 archive:
 	cp target/universal/release/libdr_libphonenumber.a $(DrLibPhonenumberPluginPath)/.
-	@echo "[DONE] Copy static library to bundler"
-
+	@echo "[DONE] Copy static library to iOS plugin"
+	cp target/aarch64-linux-android/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/arm64-v8a/.
+	cp target/armv7-linux-androideabi/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/armeabi-v7a/.
+	cp target/i686-linux-android/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/x86/.
+	cp target/x86_64-linux-android/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/x86_64/.
+	@echo "[DONE] Copy shared object to Android plugin"
 ## :
 
 # ##############################################################################
