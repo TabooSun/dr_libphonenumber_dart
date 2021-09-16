@@ -24,15 +24,12 @@ jobs:
           make bindings
           make archive
 
-      - name: Pod lib lint
-        working-directory: DrLibPhonenumberSwiftBundler
-        run: pod lib lint DrLibPhonenumberSwiftBundler.podspec
-
       - name: Deploy to Cocoapod
-        # You may pin to the exact commit or the version.
-        # uses: michaelhenry/deploy-to-cocoapods-github-action@745686ab065f90596e0d5cfcf97bb2416d94262e
-        uses: michaelhenry/deploy-to-cocoapods-github-action@1.0.10
-        with:
+        working-directory: DrLibPhonenumberSwiftBundler
+        run: | 
+          pod lib lint --allow-warnings
+          pod trunk push --allow-warnings
+        env: 
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
           
       - name: Cleanup
