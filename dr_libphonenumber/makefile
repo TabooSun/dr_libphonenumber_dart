@@ -41,7 +41,7 @@ init:
 # ##############################################################################
 
 ## all: Compile iOS, Android and bindings targets
-all: ios android bindings
+all: ios android clean_bindings bindings
 
 ## ios: Compile the iOS universal library
 ios: target/universal/release/archive.a
@@ -114,6 +114,8 @@ archive:
 .PHONY: clean
 clean:
 	cargo clean
+
+clean_bindings:
 	rm -f target/bindings.h target/bindings.src.h
 
 ## test:

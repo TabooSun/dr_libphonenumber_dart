@@ -63,6 +63,6 @@ mod tests {
     }
 
     fn free_memory(phone_number: *mut c_char) {
-        clean_up::free_memory::free_c_char(phone_number);
+        clean_up::free_memory::freeCChar(phone_number);
     }
 }
