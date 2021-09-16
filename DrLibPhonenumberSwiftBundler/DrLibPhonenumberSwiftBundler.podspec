@@ -25,7 +25,7 @@ This library is the underlying implementation of dr_libphonenumber.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'TabooSun' => 'taboosun1996@gmail.com' }
-  s.source           = { :git => 'https://github.com/TabooSun/dr_libphonenumber_rust.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/TabooSun/dr_libphonenumber_rust.git', :tag => 'v' + s.version.to_s }
   s.public_header_files = 'DrLibPhonenumberSwiftBundler/Classes/**/*.h'
   s.source_files = 'DrLibPhonenumberSwiftBundler/Classes/**/*'
   s.static_framework = true
