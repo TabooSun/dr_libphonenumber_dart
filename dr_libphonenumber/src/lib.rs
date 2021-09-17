@@ -16,3 +16,8 @@ mod utils {
 }
 pub use crate::utils::string_helper;
 pub use crate::utils::number_type;
+
+pub mod models {
+    pub mod region_info;
+}
+pub use crate::models::region_info;

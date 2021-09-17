@@ -5,6 +5,7 @@ mod tests {
 
     use crate::{clean_up, dr_libphonenumber, string_helper};
     use crate::dr_libphonenumber::PhoneNumberFormat;
+    use crate::free_memory::freeRegionInfo;
     use crate::utils::number_type;
 
     static PHONE_NUMBER: &'static str = "0129602189";
@@ -56,6 +57,19 @@ mod tests {
         let region_code = dr_libphonenumber::getRegionCodeForCountryCode(60);
         assert_eq!(string_helper::parse_c_char_to_str(region_code, "region_code"), ISO_CODE);
         free_memory(region_code);
+    }
+
+    #[test]
+    fn get_region_info() {
+        let region_info = dr_libphonenumber::getRegionInfo(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE));
+        unsafe {
+            let region_info = &*region_info;
+            assert_eq!(region_info.region_code, 60);
+            assert_eq!(string_helper::parse_c_char_to_str(region_info.country_code, "country_code"), ISO_CODE);
+            assert_eq!(region_info.phone_number_value, 129602189);
+            assert_eq!(string_helper::parse_c_char_to_str(region_info.formatted_number, "phone_number_value"), "012-960 2189");
+        }
+        freeRegionInfo(region_info);
     }
 
     fn parse_str_to_c_char(s: &str) -> *const c_char {

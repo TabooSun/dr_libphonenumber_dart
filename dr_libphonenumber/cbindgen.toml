@@ -9,3 +9,6 @@ no_includes = true
 
 [fn]
 rename_args = "CamelCase"
+
+[struct]
+rename_fields = "CamelCase"
