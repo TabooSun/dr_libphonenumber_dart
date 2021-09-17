@@ -69,6 +69,15 @@ pub extern "C" fn getRegionInfo(phone_number: *const c_char, iso_code: *const c_
     }))
 }
 
+#[no_mangle]
+pub extern "C" fn isValidPhoneNumber(phone_number: *const c_char, iso_code: *const c_char) -> bool {
+    let country = parse_iso_code(iso_code);
+
+    let phone_number = parse_phone_number(phone_number, country);
+
+    phone_number.is_valid()
+}
+
 fn parse_phone_number(phone_number: *const c_char, country: Id) -> PhoneNumber {
     let phone_number = string_helper::parse_c_char_to_str(phone_number, "phone_number");
     let phone_number = phonenumber::parse(Some(country), phone_number.clone())

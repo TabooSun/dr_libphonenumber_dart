@@ -72,6 +72,12 @@ mod tests {
         freeRegionInfo(region_info);
     }
 
+    #[test]
+    fn is_valid_phone_number() {
+        let is_valid_phone_number = dr_libphonenumber::isValidPhoneNumber(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE));
+        assert_eq!(is_valid_phone_number, true);
+    }
+
     fn parse_str_to_c_char(s: &str) -> *const c_char {
         CString::new(s).unwrap().into_raw()
     }
