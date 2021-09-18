@@ -29,6 +29,8 @@ help: makefile
 .PHONY: init
 init:
 	rustup target add aarch64-apple-ios x86_64-apple-ios
+	# This is for testing purpose on macOS.
+	rustup target add x86_64-apple-darwin
 	#rustup target add armv7-apple-ios armv7s-apple-ios i386-apple-ios ## deprecated
 	rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
 	@if [ $$(uname) == "Darwin" ] ; then cargo install cargo-lipo ; fi
@@ -49,6 +51,7 @@ ios: target/universal/release/archive.a
 target/universal/release/archive.a: $(SOURCES) ndk-home
 	@if [ $$(uname) == "Darwin" ] ; then \
 		cargo lipo --release ; \
+		cargo build --target=x86_64-apple-darwin --release ; \
 		else echo "Skipping iOS compilation on $$(uname)" ; \
 	fi
 	@echo "[DONE] $@"
