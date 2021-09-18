@@ -43,7 +43,7 @@ init:
 # ##############################################################################
 
 ## all: Compile iOS, Android and bindings targets
-all: ios android clean_bindings bindings
+all: ios android bindings
 
 ## ios: Compile the iOS universal library
 ios: target/universal/release/archive.a
@@ -83,20 +83,20 @@ target/x86_64-linux-android/release/libexample.so: $(SOURCES) ndk-home
 		cargo build --target x86_64-linux-android --release
 	@echo "[DONE] $@"
 
-.PHONY: ndk-home
+.PHONY: ndk-home bindings
 ndk-home:
 	@if [ ! -d "${ANDROID_NDK_HOME}" ] ; then \
 		echo "Error: Please, set the ANDROID_NDK_HOME env variable to point to your NDK folder" ; \
 		exit 1 ; \
 	fi
 
-## bindings: Generate the .h file for iOS
-bindings: target/bindings.h
+bindingsPath = target/bindings.h
 
-target/bindings.h: $(SOURCES)
-	cbindgen $^ -c cbindgen.toml -o $@
+## bindings: Generate the .h file for iOS
+bindings:
+	cbindgen $(SOURCES) -c cbindgen.toml -o $(bindingsPath)
 	@echo "[DONE] $@"
-	cp $@ $(DrLibPhonenumberPluginPath)/Classes/DrLibPhonenumberBindings.h
+	cp $(bindingsPath) $(DrLibPhonenumberPluginPath)/Classes/DrLibPhonenumberBindings.h
 	@echo "[DONE] Copy header file to plugin"
 
 archive:
@@ -117,9 +117,6 @@ archive:
 .PHONY: clean
 clean:
 	cargo clean
-
-clean_bindings:
-	rm -f target/bindings.h target/bindings.src.h
 
 ## test:
 .PHONY: test
