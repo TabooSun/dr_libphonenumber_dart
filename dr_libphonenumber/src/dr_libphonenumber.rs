@@ -10,8 +10,10 @@ use phonenumber::{
     PhoneNumber,
 };
 
+use crate::models::phone_number_format::PhoneNumberFormat;
 use crate::region_info::RegionInfo;
 use crate::string_helper;
+use crate::string_helper::parse_c_char_to_str;
 use crate::utils::number_type::{get_number_type, PhoneNumberType};
 
 /// Format the [phone_number] using the [phone_number_format].
@@ -21,12 +23,22 @@ pub extern "C" fn format(phone_number: *const c_char, iso_code: *const c_char, p
 
     let phone_number = parse_phone_number(phone_number, country);
 
-    let phone_number_format = match phone_number_format {
-        PhoneNumberFormat::E164 => { Mode::E164 }
-        PhoneNumberFormat::International => { Mode::International }
-        PhoneNumberFormat::National => { Mode::National }
-        PhoneNumberFormat::Rfc3966 => { Mode::Rfc3966 }
+    let phone_number_format = phone_number_format.parse_to_mode();
+    parse_string_to_c_char(phone_number.format().mode(phone_number_format).to_string().as_str())
+}
+
+#[no_mangle]
+pub extern "C" fn formatAsYouType(phone_number: *const c_char, iso_code: *const c_char, phone_number_format: PhoneNumberFormat) -> *mut c_char {
+    let country = match parse_iso_code(iso_code).ok() {
+        None => {
+            return parse_string_to_c_char(parse_c_char_to_str(phone_number, "phone_number").as_str());
+        }
+        Some(country) => country,
     };
+
+    let phone_number = parse_phone_number(phone_number, country);
+
+    let phone_number_format = phone_number_format.parse_to_mode();
     parse_string_to_c_char(phone_number.format().mode(phone_number_format).to_string().as_str())
 }
 
@@ -97,25 +109,4 @@ fn parse_iso_code(iso_code: *const c_char) -> Id {
 
 fn parse_string_to_c_char(str: &str) -> *mut c_char {
     CString::new(str).unwrap().into_raw()
-}
-
-#[repr(C)]
-#[derive(Debug, PartialEq)]
-pub enum PhoneNumberFormat {
-    /// E.164 formatting, no spaces, no decorations.
-    #[allow(dead_code)]
-    E164,
-
-    /// International formatting, contains country code and country dependent
-    /// formatting.
-    #[allow(dead_code)]
-    International,
-
-    /// National formatting, no country code and country dependent formatting.
-    #[allow(dead_code)]
-    National,
-
-    /// RFC3966 formatting, see the RFC.
-    #[allow(dead_code)]
-    Rfc3966,
 }
