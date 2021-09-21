@@ -10,7 +10,8 @@ ANDROID_ARMV7_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86
 ANDROID_I686_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86_64/bin/i686-linux-android29-clang
 ANDROID_X86_64_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86_64/bin/x86_64-linux-android29-clang
 
-DrLibPhonenumberPluginPath=../../ios
+DrLibPhonenumberIOSPluginPath=../../ios
+DrLibPhonenumberMACOSPluginPath=../../macos
 SHELL := /bin/bash
 
 # ##############################################################################
@@ -96,12 +97,16 @@ bindingsPath = target/bindings.h
 bindings:
 	cbindgen $(SOURCES) -c cbindgen.toml -o $(bindingsPath)
 	@echo "[DONE] $@"
-	cp $(bindingsPath) $(DrLibPhonenumberPluginPath)/Classes/DrLibPhonenumberBindings.h
-	@echo "[DONE] Copy header file to plugin"
+	cp $(bindingsPath) $(DrLibPhonenumberIOSPluginPath)/Classes/DrLibPhonenumberBindings.h
+	@echo "[DONE] Copy header file to ios plugin"
+	cp $(bindingsPath) $(DrLibPhonenumberMACOSPluginPath)/Classes/DrLibPhonenumberBindings.h
+	@echo "[DONE] Copy header file to macos plugin"
 
 archive:
-	cp target/universal/release/libdr_libphonenumber.a $(DrLibPhonenumberPluginPath)/.
+	cp target/universal/release/libdr_libphonenumber.a $(DrLibPhonenumberIOSPluginPath)/.
 	@echo "[DONE] Copy static library to iOS plugin"
+	cp target/x86_64-apple-darwin/release/libdr_libphonenumber.a $(DrLibPhonenumberMACOSPluginPath)/.
+	@echo "[DONE] Copy static library to macos plugin"
 	cp target/aarch64-linux-android/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/arm64-v8a/.
 	cp target/armv7-linux-androideabi/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/armeabi-v7a/.
 	cp target/i686-linux-android/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/x86/.
