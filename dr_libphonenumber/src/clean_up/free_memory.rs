@@ -1,17 +1,7 @@
-use std::ffi::CString;
-use std::os::raw::c_char;
-use crate::models::region_info::RegionInfo;
+use std::os::raw::c_void;
 
 #[no_mangle]
-pub extern "C" fn freeCChar(str: *mut c_char) {
-    unsafe {
-        if str.is_null() { return; }
-        CString::from_raw(str)
-    };
-}
-
-#[no_mangle]
-pub extern "C" fn freeRegionInfo(unsafe_struct: *mut RegionInfo) {
+pub extern "C" fn free_memory(unsafe_struct: *mut c_void) {
     if unsafe_struct.is_null() { return; }
     unsafe {
         Box::from_raw(unsafe_struct);

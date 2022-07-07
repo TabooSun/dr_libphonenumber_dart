@@ -1,6 +1,6 @@
-use std::os::raw::c_char;
+use std::os::raw::{c_char, c_void};
 
-use crate::clean_up::free_memory::freeCChar;
+use crate::free_memory::free_memory;
 
 /// Check https://countrycode.org/ for detail.
 #[repr(C)]
@@ -21,7 +21,7 @@ pub struct RegionInfo {
 
 impl Drop for RegionInfo {
     fn drop(&mut self) {
-        freeCChar(self.country_code);
-        freeCChar(self.formatted_number);
+        free_memory(self.country_code as *mut c_void);
+        free_memory(self.formatted_number as *mut c_void);
     }
 }

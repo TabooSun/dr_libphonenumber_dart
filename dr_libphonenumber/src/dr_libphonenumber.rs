@@ -9,16 +9,16 @@ use phonenumber::{
     Mode,
     PhoneNumber,
 };
+use crate::lib_phonenumber_result::LibPhoneNumberResult;
 
 use crate::models::phone_number_format::PhoneNumberFormat;
 use crate::region_info::RegionInfo;
-use crate::string_helper;
-use crate::string_helper::parse_c_char_to_str;
-use crate::utils::number_type::{get_number_type, PhoneNumberType};
+use crate::{number_type, string_helper};
+use crate::utils::number_type::PhoneNumberType;
 
 /// Format the [phone_number] using the [phone_number_format].
 #[no_mangle]
-pub extern "C" fn format(phone_number: *const c_char, iso_code: *const c_char, phone_number_format: PhoneNumberFormat) -> *mut c_char {
+pub extern "C" fn format(phone_number: *const c_char, iso_code: *const c_char, phone_number_format: PhoneNumberFormat) -> *mut LibPhoneNumberResult<c_char> {
     let country = parse_iso_code(iso_code);
 
     let phone_number = parse_phone_number(phone_number, country);
@@ -35,15 +35,14 @@ pub extern "C" fn formatAsYouType(phone_number: *const c_char, iso_code: *const 
         }
         Some(country) => country,
     };
-
-    let phone_number = parse_phone_number(phone_number, country);
-
-    let phone_number_format = phone_number_format.parse_to_mode();
-    parse_string_to_c_char(phone_number.format().mode(phone_number_format).to_string().as_str())
+    Box::into_raw(Box::new(LibPhoneNumberResult {
+        data: parse_string_to_c_char(phone_number.format().mode(phone_number_format).to_string().as_str()),
+        error: parse_string_to_c_char(""),
+    }))
 }
 
 #[no_mangle]
-pub extern "C" fn getNumberType(phone_number: *const c_char, iso_code: *const c_char) -> PhoneNumberType {
+pub extern "C" fn get_number_type(phone_number: *const c_char, iso_code: *const c_char) -> PhoneNumberType {
     let country = parse_iso_code(iso_code);
     let metadata: &Metadata;
 
@@ -54,7 +53,7 @@ pub extern "C" fn getNumberType(phone_number: *const c_char, iso_code: *const c_
     });
 
     let national_phone_number = phone_number.national().to_string();
-    get_number_type(metadata, &national_phone_number)
+    number_type::get_number_type(metadata, &national_phone_number)
 }
 
 #[no_mangle]

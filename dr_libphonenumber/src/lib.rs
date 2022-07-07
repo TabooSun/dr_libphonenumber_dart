@@ -23,5 +23,7 @@ mod utils {
 
 pub mod models {
     pub mod region_info;
-    pub mod phone_number_format;
+    pub mod lib_phonenumber_result;
 }
+pub use crate::models::region_info;
+pub use crate::models::lib_phonenumber_result;
