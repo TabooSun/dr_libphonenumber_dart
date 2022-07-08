@@ -10,8 +10,6 @@ ANDROID_ARMV7_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86
 ANDROID_I686_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86_64/bin/i686-linux-android29-clang
 ANDROID_X86_64_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x86_64/bin/x86_64-linux-android29-clang
 
-DrLibPhonenumberIOSPluginPath=../../ios
-DrLibPhonenumberMACOSPluginPath=../../macos
 SHELL := /bin/bash
 
 # ##############################################################################
@@ -29,12 +27,18 @@ help: makefile
 ## init: Install missing dependencies.
 .PHONY: init
 init:
-	rustup target add aarch64-apple-ios x86_64-apple-ios
+	rustup target add aarch64-apple-ios x86_64-apple-ios aarch64-apple-darwin
 	# This is for testing purpose on macOS.
 	rustup target add x86_64-apple-darwin
 	#rustup target add armv7-apple-ios armv7s-apple-ios i386-apple-ios ## deprecated
 	rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
-	@if [ $$(uname) == "Darwin" ] ; then cargo install cargo-lipo ; fi
+	@if [ $$(uname) == "Darwin" ] ; then \
+		cargo install cargo-lipo ; \
+		rustup default nightly ; \
+		rustup target add aarch64-apple-ios-sim --toolchain nightly ; \
+		rustup component add rust-src --toolchain nightly-aarch64-apple-darwin ; \
+		rustup default stable ; \
+	fi
 	cargo install cbindgen
 
 ## :
@@ -51,9 +55,15 @@ ios: target/universal/release/archive.a
 
 target/universal/release/archive.a: $(SOURCES) ndk-home
 	@if [ $$(uname) == "Darwin" ] ; then \
+		rustup default stable ; \
 		cargo lipo --release ; \
 		cargo build --target=x86_64-apple-darwin --release ; \
-		else echo "Skipping iOS compilation on $$(uname)" ; \
+		cargo build --target=aarch64-apple-darwin --release ; \
+		cargo build --target=x86_64-apple-ios --release ; \
+		rustup default nightly ; \
+		cargo +nightly build -Z build-std --target aarch64-apple-ios-sim --release ; \
+		rustup default stable ; \
+		else echo "Skipping Apple (iOS, macOS and etc.) compilations on $$(uname)" ; \
 	fi
 	@echo "[DONE] $@"
 
@@ -97,21 +107,16 @@ bindingsPath = target/bindings.h
 bindings:
 	cbindgen $(SOURCES) -c cbindgen.toml -o $(bindingsPath)
 	@echo "[DONE] $@"
-	cp $(bindingsPath) $(DrLibPhonenumberIOSPluginPath)/Classes/DrLibPhonenumberBindings.h
-	@echo "[DONE] Copy header file to ios plugin"
-	cp $(bindingsPath) $(DrLibPhonenumberMACOSPluginPath)/Classes/DrLibPhonenumberBindings.h
-	@echo "[DONE] Copy header file to macos plugin"
 
 archive:
-	cp target/universal/release/libdr_libphonenumber.a $(DrLibPhonenumberIOSPluginPath)/.
-	@echo "[DONE] Copy static library to iOS plugin"
-	cp target/x86_64-apple-darwin/release/libdr_libphonenumber.a $(DrLibPhonenumberMACOSPluginPath)/.
-	@echo "[DONE] Copy static library to macos plugin"
 	cp target/aarch64-linux-android/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/arm64-v8a/.
 	cp target/armv7-linux-androideabi/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/armeabi-v7a/.
 	cp target/i686-linux-android/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/x86/.
 	cp target/x86_64-linux-android/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/x86_64/.
 	@echo "[DONE] Copy shared object to Android plugin"
+	
+	./buildappleartifacts.sh
+	@echo "[DONE] Build iOS xcframework"
 ## :
 
 # ##############################################################################
