@@ -2,7 +2,7 @@ use phonenumber::Metadata;
 
 #[repr(C)]
 #[derive(Debug, PartialEq)]
-pub enum PhoneNumberType {
+pub enum DrPhoneNumberType {
     ///
     FixedLine,
 
@@ -64,60 +64,60 @@ pub enum PhoneNumberType {
 }
 
 
-pub fn get_number_type(meta: &Metadata, value: &str) -> PhoneNumberType {
+pub fn get_number_type(meta: &Metadata, value: &str) -> DrPhoneNumberType {
     if !meta.descriptors().general().is_match(value) {
-        return PhoneNumberType::Unknown;
+        return DrPhoneNumberType::Unknown;
     }
 
     if meta.descriptors().premium_rate().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
-        return PhoneNumberType::PremiumRate;
+        return DrPhoneNumberType::PremiumRate;
     }
 
     if meta.descriptors().toll_free().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
-        return PhoneNumberType::TollFree;
+        return DrPhoneNumberType::TollFree;
     }
 
     if meta.descriptors().shared_cost().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
-        return PhoneNumberType::SharedCost;
+        return DrPhoneNumberType::SharedCost;
     }
 
     if meta.descriptors().voip().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
-        return PhoneNumberType::Voip;
+        return DrPhoneNumberType::Voip;
     }
 
     if meta.descriptors().personal_number().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
-        return PhoneNumberType::PersonalNumber;
+        return DrPhoneNumberType::PersonalNumber;
     }
 
     if meta.descriptors().pager().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
-        return PhoneNumberType::Pager;
+        return DrPhoneNumberType::Pager;
     }
 
     if meta.descriptors().uan().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
-        return PhoneNumberType::Uan;
+        return DrPhoneNumberType::Uan;
     }
 
     if meta.descriptors().voicemail().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
-        return PhoneNumberType::Voicemail;
+        return DrPhoneNumberType::Voicemail;
     }
 
     if meta.descriptors().fixed_line().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
         if meta.descriptors().fixed_line().as_ref().map(|d| d.national_number().as_str()) ==
             meta.descriptors().mobile().as_ref().map(|d| d.national_number().as_str())
         {
-            return PhoneNumberType::FixedLineOrMobile;
+            return DrPhoneNumberType::FixedLineOrMobile;
         }
 
         if meta.descriptors().mobile().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
-            return PhoneNumberType::FixedLineOrMobile;
+            return DrPhoneNumberType::FixedLineOrMobile;
         }
 
-        return PhoneNumberType::FixedLine;
+        return DrPhoneNumberType::FixedLine;
     }
 
     if meta.descriptors().mobile().as_ref().map(|d| d.is_match(value)).unwrap_or(false) {
-        return PhoneNumberType::Mobile;
+        return DrPhoneNumberType::Mobile;
     }
 
-    PhoneNumberType::Unknown
+    DrPhoneNumberType::Unknown
 }

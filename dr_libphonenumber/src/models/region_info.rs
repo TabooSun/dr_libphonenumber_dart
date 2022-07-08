@@ -5,7 +5,7 @@ use crate::free_memory::free_memory;
 /// Check https://countrycode.org/ for detail.
 #[repr(C)]
 #[derive(Debug, PartialEq)]
-pub struct RegionInfo {
+pub struct DrRegionInfo {
     /// The region code or calling code.
     pub region_code: u16,
 
@@ -19,7 +19,7 @@ pub struct RegionInfo {
     pub formatted_number: *mut c_char,
 }
 
-impl Drop for RegionInfo {
+impl Drop for DrRegionInfo {
     fn drop(&mut self) {
         free_memory(self.country_code as *mut c_void);
         free_memory(self.formatted_number as *mut c_void);

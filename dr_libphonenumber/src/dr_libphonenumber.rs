@@ -3,21 +3,16 @@ use std::os::raw::c_char;
 use std::ptr::null_mut;
 use std::str::FromStr;
 
-use phonenumber::{
-    country::Id,
-    metadata::DATABASE,
-    Mode,
-    PhoneNumber,
-};
+use phonenumber::{country::Id, metadata::DATABASE, Mode, PhoneNumber};
 use crate::lib_phonenumber_result::{LibPhoneNumberResult, MutableLibPhoneNumberResult};
 
-use crate::region_info::RegionInfo;
-use crate::{number_type, PhoneNumberFormat, string_helper};
-use crate::utils::number_type::PhoneNumberType;
+use crate::region_info::DrRegionInfo;
+use crate::{number_type, DrPhoneNumberFormat, string_helper};
+use crate::utils::number_type::DrPhoneNumberType;
 
 /// Format the [phone_number] using the [phone_number_format].
 #[no_mangle]
-pub extern "C" fn format(phone_number: *const c_char, iso_code: *const c_char, phone_number_format: PhoneNumberFormat) -> *mut MutableLibPhoneNumberResult<c_char> {
+pub extern "C" fn format(phone_number: *const c_char, iso_code: *const c_char, phone_number_format: DrPhoneNumberFormat) -> *mut MutableLibPhoneNumberResult<c_char> {
     let country = match parse_iso_code(iso_code) {
         Ok(country) => country,
         Err(error) => {
@@ -47,7 +42,7 @@ pub extern "C" fn format(phone_number: *const c_char, iso_code: *const c_char, p
 }
 
 #[no_mangle]
-pub extern "C" fn format_as_you_type(phone_number: *const c_char, iso_code: *const c_char, phone_number_format: PhoneNumberFormat) -> *mut MutableLibPhoneNumberResult<c_char> {
+pub extern "C" fn format_as_you_type(phone_number: *const c_char, iso_code: *const c_char, phone_number_format: DrPhoneNumberFormat) -> *mut MutableLibPhoneNumberResult<c_char> {
     let country = match parse_iso_code(iso_code).ok() {
         None => {
             return Box::into_raw(Box::new(MutableLibPhoneNumberResult {
@@ -76,12 +71,12 @@ pub extern "C" fn format_as_you_type(phone_number: *const c_char, iso_code: *con
 }
 
 #[no_mangle]
-pub extern "C" fn get_number_type(phone_number: *const c_char, iso_code: *const c_char) -> *mut LibPhoneNumberResult<PhoneNumberType> {
+pub extern "C" fn get_number_type(phone_number: *const c_char, iso_code: *const c_char) -> *mut LibPhoneNumberResult<DrPhoneNumberType> {
     let country = match parse_iso_code(iso_code) {
         Ok(country) => country,
         Err(error) => {
             return Box::into_raw(Box::new(LibPhoneNumberResult {
-                data: PhoneNumberType::Unknown,
+                data: DrPhoneNumberType::Unknown,
                 error: parse_string_to_c_char(error.as_str()),
             }));
         }
@@ -91,7 +86,7 @@ pub extern "C" fn get_number_type(phone_number: *const c_char, iso_code: *const 
         Ok(phone_number) => phone_number,
         Err(error) => {
             return Box::into_raw(Box::new(LibPhoneNumberResult {
-                data: PhoneNumberType::Unknown,
+                data: DrPhoneNumberType::Unknown,
                 error: parse_string_to_c_char(error.as_str()),
             }));
         }
@@ -100,7 +95,7 @@ pub extern "C" fn get_number_type(phone_number: *const c_char, iso_code: *const 
     let metadata = match phone_number.metadata(&*DATABASE) {
         None => {
             return Box::into_raw(Box::new(LibPhoneNumberResult {
-                data: PhoneNumberType::Unknown,
+                data: DrPhoneNumberType::Unknown,
                 error: parse_string_to_c_char("Unable to retrieve metadata."),
             }));
         }
@@ -141,7 +136,7 @@ pub extern "C" fn get_region_code_for_country_code(calling_code: u16) -> *mut Mu
 }
 
 #[no_mangle]
-pub extern "C" fn get_region_info(phone_number: *const c_char, iso_code: *const c_char) -> *mut MutableLibPhoneNumberResult<RegionInfo> {
+pub extern "C" fn get_region_info(phone_number: *const c_char, iso_code: *const c_char) -> *mut MutableLibPhoneNumberResult<DrRegionInfo> {
     let country = match parse_iso_code(iso_code) {
         Ok(country) => country,
         Err(error) => {
@@ -162,7 +157,7 @@ pub extern "C" fn get_region_info(phone_number: *const c_char, iso_code: *const 
     };
 
     Box::into_raw(Box::new(MutableLibPhoneNumberResult {
-        data: Box::into_raw(Box::new(RegionInfo {
+        data: Box::into_raw(Box::new(DrRegionInfo {
             region_code: phone_number.country().code(),
             phone_number_value: phone_number.national().value(),
             country_code: parse_string_to_c_char(country.as_ref()),

@@ -3,7 +3,7 @@ mod tests {
     use std::ffi::CString;
     use std::os::raw::c_char;
 
-    use crate::{dr_libphonenumber, PhoneNumberFormat};
+    use crate::{dr_libphonenumber, DrPhoneNumberFormat};
     use crate::string_helper;
     use crate::utils::number_type;
 
@@ -12,7 +12,7 @@ mod tests {
 
     #[test]
     fn format_phone_number_in_e164_format() {
-        let result = dr_libphonenumber::format(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE), PhoneNumberFormat::E164);
+        let result = dr_libphonenumber::format(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE), DrPhoneNumberFormat::E164);
         unsafe {
             let result = Box::from_raw(result);
             assert_eq!(string_helper::parse_c_char_to_str(result.data, "phone_number"), String::from("+60129602189"));
@@ -21,7 +21,7 @@ mod tests {
 
     #[test]
     fn format_phone_number_in_international_format() {
-        let result = dr_libphonenumber::format(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE), PhoneNumberFormat::International);
+        let result = dr_libphonenumber::format(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE), DrPhoneNumberFormat::International);
         unsafe {
             let result = Box::from_raw(result);
             assert_eq!(string_helper::parse_c_char_to_str(result.data, "phone_number"), String::from("+60 12-960 2189"));
@@ -30,7 +30,7 @@ mod tests {
 
     #[test]
     fn format_phone_number_in_national_format() {
-        let result = dr_libphonenumber::format(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE), PhoneNumberFormat::National);
+        let result = dr_libphonenumber::format(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE), DrPhoneNumberFormat::National);
         unsafe {
             let result = Box::from_raw(result);
             assert_eq!(string_helper::parse_c_char_to_str(result.data, "phone_number"), String::from("012-960 2189"));
@@ -39,7 +39,7 @@ mod tests {
 
     #[test]
     fn format_phone_number_in_rfc3966_format() {
-        let result = dr_libphonenumber::format(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE), PhoneNumberFormat::Rfc3966);
+        let result = dr_libphonenumber::format(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE), DrPhoneNumberFormat::Rfc3966);
         unsafe {
             let result = Box::from_raw(result);
             assert_eq!(string_helper::parse_c_char_to_str(result.data, "phone_number"), String::from("tel:+60-12-960-2189"));
@@ -48,10 +48,21 @@ mod tests {
 
     #[test]
     fn format_phone_number_with_lowercase_iso_code() {
-        let result = dr_libphonenumber::format(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char("my"), PhoneNumberFormat::International);
+        let result = dr_libphonenumber::format(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char("my"), DrPhoneNumberFormat::International);
         unsafe {
             let result = Box::from_raw(result);
             assert_eq!(string_helper::parse_c_char_to_str(result.data, "phone_number"), String::from("+60 12-960 2189"));
+        }
+    }
+    
+    #[test]
+    fn format_invalid_phone_number_in_e164_format() {
+        let result = dr_libphonenumber::format(parse_str_to_c_char("0"), parse_str_to_c_char(ISO_CODE), DrPhoneNumberFormat::E164);
+        unsafe {
+            let result = Box::from_raw(result);
+            assert!(result.data.is_null());
+            assert!(!result.error.is_null());
+            assert!(!string_helper::parse_c_char_to_str(result.error, "error").is_empty());
         }
     }
 
@@ -60,7 +71,7 @@ mod tests {
         let phone_number_type = dr_libphonenumber::get_number_type(parse_str_to_c_char(PHONE_NUMBER), parse_str_to_c_char(ISO_CODE));
         unsafe {
             let phone_number_type = Box::from_raw(phone_number_type);
-            assert_eq!(phone_number_type.data, number_type::PhoneNumberType::Mobile);
+            assert_eq!(phone_number_type.data, number_type::DrPhoneNumberType::Mobile);
         }
     }
 

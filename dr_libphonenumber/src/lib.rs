@@ -28,4 +28,4 @@ pub mod models {
 
 pub use crate::models::region_info;
 pub use crate::models::lib_phonenumber_result;
-pub use crate::models::phone_number_format::PhoneNumberFormat;
+pub use crate::models::phone_number_format::DrPhoneNumberFormat;
