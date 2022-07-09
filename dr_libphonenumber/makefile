@@ -123,7 +123,7 @@ archive:
 	@echo "[DONE] Copy shared object to Android plugin"
 	
 	./buildappleartifacts.sh
-	@echo "[DONE] Build iOS xcframework"
+	@echo "[DONE] Build iOS/macOS xcframework"
 ## :
 
 # ##############################################################################

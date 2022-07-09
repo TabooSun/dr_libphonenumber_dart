@@ -4,7 +4,8 @@ set -x
 
 FINAL_FRAMEWORK_NAME="DrLibPhonenumber"
 
-ARTIFACTS_INSTALLATION_DIR=../../ios
+IOS_ARTIFACTS_INSTALLATION_DIR=../../ios
+MACOS_ARTIFACTS_INSTALLATION_DIR=../../macos
 
 STATIC_LIBRARY_NAME="libdr_libphonenumber.a"
 
@@ -17,12 +18,21 @@ do
 #  swift_module_map > "$tmpdir/$ARCH/release/headers/module.modulemap"
 done
 
-ARTIFACTS_INSTALLATION_PATH=${ARTIFACTS_INSTALLATION_DIR}/${FINAL_FRAMEWORK_NAME}.xcframework
-rm -rf ${ARTIFACTS_INSTALLATION_PATH}
+IOS_ARTIFACTS_INSTALLATION_PATH=${IOS_ARTIFACTS_INSTALLATION_DIR}/${FINAL_FRAMEWORK_NAME}.xcframework
+rm -rf ${IOS_ARTIFACTS_INSTALLATION_PATH}
+MACOS_ARTIFACTS_INSTALLATION_PATH=${MACOS_ARTIFACTS_INSTALLATION_DIR}/${FINAL_FRAMEWORK_NAME}.xcframework
+rm -rf ${MACOS_ARTIFACTS_INSTALLATION_PATH}
  
-# Create xcframework
+# Create ios xcframework
 xcodebuild -create-xcframework \
   $XCFRAMEWORK_ARGS \
   -library target/lipo/macos/$STATIC_LIBRARY_NAME \
   -headers target/bindings.h \
-  -output ${ARTIFACTS_INSTALLATION_PATH}
+  -output ${IOS_ARTIFACTS_INSTALLATION_PATH}
+  
+# Create macos xcframework
+xcodebuild -create-xcframework \
+  -library target/lipo/macos/$STATIC_LIBRARY_NAME \
+  -headers target/bindings.h \
+  -output ${MACOS_ARTIFACTS_INSTALLATION_PATH}
+  
