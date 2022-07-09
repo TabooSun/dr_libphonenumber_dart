@@ -42,35 +42,6 @@ pub extern "C" fn format(phone_number: *const c_char, iso_code: *const c_char, p
 }
 
 #[no_mangle]
-pub extern "C" fn format_as_you_type(phone_number: *const c_char, iso_code: *const c_char, phone_number_format: DrPhoneNumberFormat) -> *mut MutableLibPhoneNumberResult<c_char> {
-    let country = match parse_iso_code(iso_code).ok() {
-        None => {
-            return Box::into_raw(Box::new(MutableLibPhoneNumberResult {
-                data: null_mut(),
-                error: parse_string_to_c_char(string_helper::parse_c_char_to_str(phone_number, "phone_number").as_str()),
-            }));
-        }
-        Some(country) => country,
-    };
-
-    let phone_number = match parse_phone_number(phone_number, country) {
-        Ok(phone_number) => phone_number,
-        Err(error) => {
-            return Box::into_raw(Box::new(MutableLibPhoneNumberResult {
-                data: null_mut(),
-                error: parse_string_to_c_char(error.as_str()),
-            }));
-        }
-    };
-
-    let phone_number_format = phone_number_format.parse_to_mode();
-    Box::into_raw(Box::new(MutableLibPhoneNumberResult {
-        data: parse_string_to_c_char(phone_number.format().mode(phone_number_format).to_string().as_str()),
-        error: null_mut(),
-    }))
-}
-
-#[no_mangle]
 pub extern "C" fn get_number_type(phone_number: *const c_char, iso_code: *const c_char) -> *mut LibPhoneNumberResult<DrPhoneNumberType> {
     let country = match parse_iso_code(iso_code) {
         Ok(country) => country,

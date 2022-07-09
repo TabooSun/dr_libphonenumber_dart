@@ -12,6 +12,9 @@ ANDROID_X86_64_LINKER=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/$(OS_NAME)-x8
 
 SHELL := /bin/bash
 
+DrLibPhonenumberIOSPluginPath=../../ios
+DrLibPhonenumberMACOSPluginPath=../../macos
+
 # ##############################################################################
 # # GENERAL
 # ##############################################################################
@@ -107,6 +110,10 @@ bindingsPath = target/bindings.h
 bindings:
 	cbindgen $(SOURCES) -c cbindgen.toml -o $(bindingsPath)
 	@echo "[DONE] $@"
+	cp $(bindingsPath) $(DrLibPhonenumberIOSPluginPath)/Classes/DrLibPhonenumberBindings.h
+	@echo "[DONE] Copy header file to ios plugin"
+	cp $(bindingsPath) $(DrLibPhonenumberMACOSPluginPath)/Classes/DrLibPhonenumberBindings.h
+	@echo "[DONE] Copy header file to macos plugin"
 
 archive:
 	cp target/aarch64-linux-android/release/libdr_libphonenumber.so ../../android/src/main/jniLibs/arm64-v8a/.
