@@ -14,6 +14,7 @@ SHELL := /bin/bash
 
 DRLIB_PHONENUMBER_IOS_PLUGIN_PATH=../../ios
 DRLIB_PHONENUMBER_MACOS_PLUGIN_PATH=../../macos
+DRLIB_PHONENUMBER_WINDOWS_ARTIFACTS_PATH=../artifacts/x86_64-pc-windows-gnu
 
 MACOS_FAT_LIBRARY_PATH=target/lipo/macos
 STATIC_LIBRARY_NAME="libdr_libphonenumber.a"
@@ -59,6 +60,8 @@ all: bindings apple android windows
 
 windows:
 	cargo build --target x86_64-pc-windows-gnu --release
+	mkdir -p $(DRLIB_PHONENUMBER_WINDOWS_ARTIFACTS_PATH)
+	cp target/x86_64-pc-windows-gnu/release/dr_libphonenumber.dll $(DRLIB_PHONENUMBER_WINDOWS_ARTIFACTS_PATH)/libdr_libphonenumber.dll
 
 ## ios: Compile the iOS universal library
 apple: 
