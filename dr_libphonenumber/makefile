@@ -14,7 +14,10 @@ SHELL := /bin/bash
 
 DRLIB_PHONENUMBER_IOS_PLUGIN_PATH=../../ios
 DRLIB_PHONENUMBER_MACOS_PLUGIN_PATH=../../macos
+
 DRLIB_PHONENUMBER_WINDOWS_ARTIFACTS_PATH=../artifacts/x86_64-pc-windows-gnu
+DRLIB_PHONENUMBER_MACOS_INTEL_ARTIFACTS_PATH=../artifacts/x86_64-apple-darwin
+DRLIB_PHONENUMBER_MACOS_APPLE_SILICON_ARTIFACTS_PATH=../artifacts/aarch64-apple-darwin
 
 MACOS_FAT_LIBRARY_PATH=target/lipo/macos
 STATIC_LIBRARY_NAME="libdr_libphonenumber.a"
@@ -78,6 +81,11 @@ apple:
 	@echo "[DONE] $@"
 	./buildappleartifacts.sh
 	@echo "[DONE] Build iOS/macOS xcframeworks"
+	mkdir -p $(DRLIB_PHONENUMBER_MACOS_INTEL_ARTIFACTS_PATH)
+	mkdir -p $(DRLIB_PHONENUMBER_MACOS_APPLE_SILICON_ARTIFACTS_PATH)
+	cp target/x86_64-apple-darwin/release/libdr_libphonenumber.dylib $(DRLIB_PHONENUMBER_MACOS_INTEL_ARTIFACTS_PATH)/libdr_libphonenumber.dylib
+	cp target/aarch64-apple-darwin/release/libdr_libphonenumber.dylib $(DRLIB_PHONENUMBER_MACOS_APPLE_SILICON_ARTIFACTS_PATH)/libdr_libphonenumber.dylib
+	@echo "[DONE] Moving macOS artifacts"
 
 ## android: Compile all the android targets using cargo-ndk
 ## Check https://github.com/bbqsrc/cargo-ndk/issues/22 for the reason of using +nightly with -Zbuild-std
