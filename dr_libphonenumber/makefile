@@ -33,6 +33,7 @@ help: makefile
 ## init: Install missing dependencies.
 .PHONY: init
 init:
+	rustup target add x86_64-pc-windows-gnu
 	rustup target add aarch64-apple-ios x86_64-apple-ios aarch64-apple-darwin
 	# This is for testing purpose on macOS.
 	rustup target add x86_64-apple-darwin
@@ -40,6 +41,7 @@ init:
 	rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
 	cargo install cargo-ndk
 	@if [ $$(uname) == "Darwin" ] ; then \
+  		brew install mingw-w64 ; \
 		cargo install cargo-lipo ; \
 		rustup target add aarch64-apple-ios-sim --toolchain nightly ; \
 		rustup component add rust-src --toolchain nightly-aarch64-apple-darwin ; \
@@ -53,7 +55,10 @@ init:
 # ##############################################################################
 
 ## all: Compile iOS, Android and bindings targets
-all: bindings apple android
+all: bindings apple android windows
+
+windows:
+	cargo build --target x86_64-pc-windows-gnu --release
 
 ## ios: Compile the iOS universal library
 apple: 
