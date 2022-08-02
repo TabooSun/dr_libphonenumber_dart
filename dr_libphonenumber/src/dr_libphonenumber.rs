@@ -138,6 +138,8 @@ pub extern "C" fn get_region_info(phone_number: *const c_char, iso_code: *const 
     }))
 }
 
+/// Check if the [phone_number] is a valid phone number that satisfies all the
+/// [DrPhoneNumberType] except [DrPhoneNumberType.Unknown].
 #[no_mangle]
 pub extern "C" fn is_valid_phone_number(phone_number: *const c_char, iso_code: *const c_char) -> *mut LibPhoneNumberResult<bool> {
     let country = match parse_iso_code(iso_code) {
@@ -168,7 +170,7 @@ pub extern "C" fn is_valid_phone_number(phone_number: *const c_char, iso_code: *
 
 fn parse_phone_number(phone_number: *const c_char, country: Id) -> Result<PhoneNumber, String> {
     let phone_number = string_helper::parse_c_char_to_str(phone_number, "phone_number");
-    return match phonenumber::parse(Some(country), phone_number.clone()) {
+    return match phonenumber::parse(Some(country), &phone_number) {
         Ok(phone_number) => {
             Ok(phone_number)
         }
