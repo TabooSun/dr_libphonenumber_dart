@@ -19,6 +19,7 @@ DRLIB_PHONENUMBER_DYNAMIC_LIB_DIR_PATH=../../test/artifacts
 DRLIB_PHONENUMBER_WINDOWS_ARTIFACTS_PATH=$(DRLIB_PHONENUMBER_DYNAMIC_LIB_DIR_PATH)/x86_64-pc-windows-gnu
 DRLIB_PHONENUMBER_MACOS_INTEL_ARTIFACTS_PATH=$(DRLIB_PHONENUMBER_DYNAMIC_LIB_DIR_PATH)/x86_64-apple-darwin
 DRLIB_PHONENUMBER_MACOS_APPLE_SILICON_ARTIFACTS_PATH=$(DRLIB_PHONENUMBER_DYNAMIC_LIB_DIR_PATH)/aarch64-apple-darwin
+DRLIB_PHONENUMBER_LINUX_ARTIFACTS_PATH=$(DRLIB_PHONENUMBER_DYNAMIC_LIB_DIR_PATH)/x86_64-unknown-linux-gnu
 
 IOS_SIM_FAT_LIBRARY_PATH=target/lipo/ios-sim
 MACOS_FAT_LIBRARY_PATH=target/lipo/macos
@@ -65,7 +66,12 @@ init:
 # ##############################################################################
 
 ## all: Compile iOS, Android and bindings targets
-all: bindings apple android windows
+all: bindings apple android windows linux
+
+linux:
+	cargo build --target x86_64-unknown-linux-gnu --release
+	mkdir -p $(DRLIB_PHONENUMBER_LINUX_ARTIFACTS_PATH)
+	cp target/x86_64-unknown-linux-gnu/release/libdr_libphonenumber.so $(DRLIB_PHONENUMBER_LINUX_ARTIFACTS_PATH)/libdr_libphonenumber.so
 
 ## error: linker `x86_64-w64-mingw32-gcc` not found. Fix: sudo apt install mingw-w64
 windows:
