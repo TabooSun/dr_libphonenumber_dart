@@ -39,7 +39,8 @@ help: makefile
 ## init: Install missing dependencies.
 .PHONY: init
 init:
-	rustup target add x86_64-pc-windows-gnu
+	rustup target add --toolchain nightly x86_64-pc-windows-gnu
+	rustup target add --toolchain nightly aarch64-unknown-linux-gnu
 	rustup target add aarch64-apple-ios x86_64-apple-ios aarch64-apple-darwin
 	# This is for testing purpose on macOS.
 	rustup target add x86_64-apple-darwin
@@ -51,6 +52,9 @@ init:
 		cargo install cargo-lipo ; \
 		rustup target add aarch64-apple-ios-sim --toolchain nightly ; \
 		rustup component add rust-src --toolchain nightly-aarch64-apple-darwin ; \
+	elif [ $$(uname) == "Linux" ] ; then \
+	    rustup component add rust-src --toolchain nightly --target x86_64-unknown-linux-gnu ; \
+	    rustup component add rust-src --toolchain nightly --target aarch64-unknown-linux-gnu ; \
 	fi
 	cargo install cbindgen
 
@@ -63,6 +67,7 @@ init:
 ## all: Compile iOS, Android and bindings targets
 all: bindings apple android windows
 
+## error: linker `x86_64-w64-mingw32-gcc` not found. Fix: sudo apt install mingw-w64
 windows:
 	cargo build --target x86_64-pc-windows-gnu --release
 	mkdir -p $(DRLIB_PHONENUMBER_WINDOWS_ARTIFACTS_PATH)
@@ -81,16 +86,15 @@ apple:
 		mkdir -p $(MACOS_FAT_LIBRARY_PATH) ; \
 		lipo -create target/x86_64-apple-ios/release/$(STATIC_LIBRARY_NAME) target/aarch64-apple-ios-sim/release/$(STATIC_LIBRARY_NAME) -output $(IOS_SIM_FAT_LIBRARY_PATH)/$(STATIC_LIBRARY_NAME) ; \
 		lipo -create target/x86_64-apple-darwin/release/$(STATIC_LIBRARY_NAME) target/aarch64-apple-darwin/release/$(STATIC_LIBRARY_NAME) -output $(MACOS_FAT_LIBRARY_PATH)/$(STATIC_LIBRARY_NAME) ; \
+		./buildappleartifacts.sh ; \
+		@echo "[DONE] Build iOS/macOS xcframeworks" ; \
+		mkdir -p $(DRLIB_PHONENUMBER_MACOS_INTEL_ARTIFACTS_PATH) ; \
+		mkdir -p $(DRLIB_PHONENUMBER_MACOS_APPLE_SILICON_ARTIFACTS_PATH) ; \
+		cp target/x86_64-apple-darwin/release/libdr_libphonenumber.dylib $(DRLIB_PHONENUMBER_MACOS_INTEL_ARTIFACTS_PATH)/libdr_libphonenumber.dylib ; \
+		cp target/aarch64-apple-darwin/release/libdr_libphonenumber.dylib $(DRLIB_PHONENUMBER_MACOS_APPLE_SILICON_ARTIFACTS_PATH)/libdr_libphonenumber.dylib ; \
+		@echo "[DONE] Moving macOS artifacts" ; \
 		else echo "Skipping Apple (iOS, macOS and etc.) compilations on $$(uname)" ; \
 	fi
-	@echo "[DONE] $@"
-	./buildappleartifacts.sh
-	@echo "[DONE] Build iOS/macOS xcframeworks"
-	mkdir -p $(DRLIB_PHONENUMBER_MACOS_INTEL_ARTIFACTS_PATH)
-	mkdir -p $(DRLIB_PHONENUMBER_MACOS_APPLE_SILICON_ARTIFACTS_PATH)
-	cp target/x86_64-apple-darwin/release/libdr_libphonenumber.dylib $(DRLIB_PHONENUMBER_MACOS_INTEL_ARTIFACTS_PATH)/libdr_libphonenumber.dylib
-	cp target/aarch64-apple-darwin/release/libdr_libphonenumber.dylib $(DRLIB_PHONENUMBER_MACOS_APPLE_SILICON_ARTIFACTS_PATH)/libdr_libphonenumber.dylib
-	@echo "[DONE] Moving macOS artifacts"
 
 ## android: Compile all the android targets using cargo-ndk
 ## Check https://github.com/bbqsrc/cargo-ndk/issues/22 for the reason of using +nightly with -Zbuild-std
