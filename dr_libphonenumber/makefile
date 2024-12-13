@@ -80,7 +80,7 @@ windows:
 	cp target/x86_64-pc-windows-gnu/release/dr_libphonenumber.dll $(DRLIB_PHONENUMBER_WINDOWS_ARTIFACTS_PATH)/libdr_libphonenumber.dll
 
 ## ios: Compile the iOS universal library
-apple: 
+apple:
 	@if [ $$(uname) == "Darwin" ] ; then \
   		set -x; \
 		cargo lipo --release ; \
@@ -104,7 +104,7 @@ apple:
 
 ## android: Compile all the android targets using cargo-ndk
 ## Check https://github.com/bbqsrc/cargo-ndk/issues/22 for the reason of using +nightly with -Zbuild-std
-android: 
+android:
 	cargo +nightly ndk -t arm64-v8a -t armeabi-v7a -t x86 -t x86_64 -o ../../android/src/main/jniLibs build --release -Zbuild-std
 
 .PHONY: ndk-home bindings
@@ -120,9 +120,9 @@ bindingsPath = includes/bindings.h
 bindings:
 	cbindgen $(SOURCES) -c cbindgen.toml -o $(bindingsPath)
 	@echo "[DONE] $@"
-	cp $(bindingsPath) $(DRLIB_PHONENUMBER_IOS_PLUGIN_PATH)/Classes/DrLibPhonenumberBindings.h
+	cp $(bindingsPath) $(DRLIB_PHONENUMBER_IOS_PLUGIN_PATH)/Sources/dr_libphonenumber_objc/DrLibPhonenumberBindings.h
 	@echo "[DONE] Copy header file to ios plugin"
-	cp $(bindingsPath) $(DRLIB_PHONENUMBER_MACOS_PLUGIN_PATH)/Classes/DrLibPhonenumberBindings.h
+	cp $(bindingsPath) $(DRLIB_PHONENUMBER_MACOS_PLUGIN_PATH)/Sources/dr_libphonenumber_objc/DrLibPhonenumberBindings.h
 	@echo "[DONE] Copy header file to macos plugin"
 ## :
 

@@ -3,9 +3,10 @@
 set -x
 
 FINAL_FRAMEWORK_NAME="DrLibPhonenumber"
+PROJECT_NAME="dr_libphonenumber"
 
-IOS_ARTIFACTS_INSTALLATION_DIR=../../ios
-MACOS_ARTIFACTS_INSTALLATION_DIR=../../macos
+IOS_ARTIFACTS_INSTALLATION_DIR=../../ios/${PROJECT_NAME}
+MACOS_ARTIFACTS_INSTALLATION_DIR=../../macos/${PROJECT_NAME}
 
 STATIC_LIBRARY_NAME="libdr_libphonenumber.a"
 
@@ -13,7 +14,7 @@ IOS_ARTIFACTS_INSTALLATION_PATH=${IOS_ARTIFACTS_INSTALLATION_DIR}/${FINAL_FRAMEW
 rm -rf ${IOS_ARTIFACTS_INSTALLATION_PATH}
 MACOS_ARTIFACTS_INSTALLATION_PATH=${MACOS_ARTIFACTS_INSTALLATION_DIR}/${FINAL_FRAMEWORK_NAME}.xcframework
 rm -rf ${MACOS_ARTIFACTS_INSTALLATION_PATH}
- 
+
 # Create ios xcframework
 xcodebuild -create-xcframework \
   -library target/aarch64-apple-ios/release/$STATIC_LIBRARY_NAME \
@@ -21,10 +22,10 @@ xcodebuild -create-xcframework \
   -library target/lipo/ios-sim/$STATIC_LIBRARY_NAME \
   -headers includes/ \
   -output ${IOS_ARTIFACTS_INSTALLATION_PATH}
-  
+
 # Create macos xcframework
 xcodebuild -create-xcframework \
   -library target/lipo/macos/$STATIC_LIBRARY_NAME \
   -headers includes/ \
   -output ${MACOS_ARTIFACTS_INSTALLATION_PATH}
-  
+
